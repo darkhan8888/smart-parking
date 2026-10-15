@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Smart Parking: интерактивная симуляция автоматической парковки со шлагбаумом.">
+  <title>Smart Parking | Умная парковка</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+ <div class="shell">
+  <aside class="sidebar">
+   <div class="brand"><div class="brand-icon">P</div><div><strong>SMART PARKING</strong><small>Панель управления</small></div></div>
+   <div class="side-group"><span>СИСТЕМА</span><a href="#overview" class="active">▦ &nbsp; Обзор парковки</a><a href="#parking">▤ &nbsp; Места парковки</a><a href="#history">◷ &nbsp; Журнал событий</a></div>
+   <div class="side-bottom"><span class="pulse"></span> Система работает <small>Демо-режим · без сервера</small></div>
+  </aside>
+  <main id="overview">
+   <header class="top"><div><div class="eyebrow">СИСТЕМА АВТОМАТИЗАЦИИ</div><h1>Умная парковка <span class="live">● LIVE</span></h1><p>Контроль въезда, свободных мест и движения автомобилей</p></div><div class="clock" id="clock" aria-label="Текущее время"></div></header>
+   <section class="stats" aria-label="Статистика парковки">
+    <article class="stat"><div class="stat-top">Всего мест <span>▦</span></div><div class="stat-value" id="totalCount">12</div><div class="stat-foot">Вместимость парковки</div></article>
+    <article class="stat"><div class="stat-top">Свободно <span class="green">✓</span></div><div class="stat-value green-text" id="freeCount">12</div><div class="stat-foot">Доступно для въезда</div></article>
+    <article class="stat"><div class="stat-top">Занято <span class="amber">▣</span></div><div class="stat-value" id="occupiedCount">0</div><div class="stat-foot">Автомобилей на парковке</div></article>
+    <article class="stat"><div class="stat-top">Загруженность <span>◔</span></div><div class="stat-value" id="occupancyPercent">0%</div><div class="progress"><div id="occupancyBar"></div></div></article>
+   </section>
+   <section class="content-grid">
+    <article class="panel control"><div class="section-head"><div><h2>Управление шлагбаумом</h2><p>Автоматическая проверка мест при въезде</p></div><span class="tag" id="gateStatus">● ЗАКРЫТ</span></div>
+     <div class="gate-scene"><div class="road-line"></div><div class="gate-post"></div><div class="gate-arm" id="gateArm"></div><div class="car-shape" id="carShape">🚙</div><div class="lane-caption">ЗОНА ВЪЕЗДА</div></div>
+     <label for="plateInput">Государственный номер автомобиля</label><input id="plateInput" type="text" maxlength="12" placeholder="Например, 123 ABC 02" autocomplete="off" spellcheck="false">
+     <div class="actions"><button class="primary" id="entryBtn">↓ &nbsp; Въезд автомобиля</button><button class="secondary" id="exitBtn">↑ &nbsp; Выезд автомобиля</button></div>
+     <div class="notice" id="notice" role="status" aria-live="polite">Введите номер автомобиля, чтобы начать.</div>
+     <p class="hint">Если свободных мест нет, шлагбаум останется закрытым. Для выезда введите номер припаркованного автомобиля.</p>
+    </article>
+    <article class="panel" id="parking"><div class="section-head"><div><h2>Карта парковки</h2><p>Нажмите на занятое место, чтобы подставить номер</p></div><div class="legend"><span><i class="dot-free"></i> Свободно</span><span><i class="dot-busy"></i> Занято</span></div></div><div class="parking-grid" id="parkingGrid" aria-label="Парковочные места"></div><div class="parking-footer"><span>ВЪЕЗД →</span><span>12 ПАРКОВОЧНЫХ МЕСТ</span></div></article>
+   </section>
+   <section class="panel history" id="history"><div class="section-head"><div><h2>История событий</h2><p>Последние действия системы</p></div><button id="resetBtn" class="text-button">↺ Сбросить демонстрацию</button></div><div class="table-wrap"><table><thead><tr><th>ВРЕМЯ</th><th>СОБЫТИЕ</th><th>НОМЕР</th><th>МЕСТО</th><th>РЕЗУЛЬТАТ</th></tr></thead><tbody id="logBody"></tbody></table></div></section>
+   <footer>SMART PARKING · Учебный проект · HTML / CSS / JavaScript · Данные сохраняются в браузере</footer>
+  </main>
+ </div>
+</body>
+</html>
